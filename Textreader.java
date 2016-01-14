@@ -4,7 +4,7 @@ import java.io.*;
 class Textreader {
 
 public static ArrayList<Questions> readtext() throws FileNotFoundException{
-	ArrayList questionlist = new ArrayList();
+	ArrayList<Questions> questionlist = new ArrayList<Questions>();
 	File qFile = new File("questions.txt");
 	FileReader fileReader = new FileReader(qFile);
 	Scanner scanner = new Scanner(fileReader);
@@ -20,11 +20,9 @@ public static ArrayList<Questions> readtext() throws FileNotFoundException{
 		if (scanner.nextLine() == "Multiple Choice")
 		ismultiple = true;
 		qtxt = scanner.nextLine();
-	    System.out.println(qtxt);
 		ansno = Integer.parseInt(scanner.nextLine());
 		for(int i=0; i<ansno; i++){
             ans[i] = scanner.nextLine();
-    	    System.out.println(ans[i]);
        }
 		str = scanner.nextLine();
 		str = str.replace(",", "");

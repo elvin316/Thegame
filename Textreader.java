@@ -17,8 +17,9 @@ public static ArrayList<Questions> readtext() throws FileNotFoundException{
 		boolean ismultiple = false;
 		int correctsteps = 0;
 		int wrongsteps = 0;		
-		if (scanner.nextLine() == "Multiple Choice")
+		if (scanner.nextLine().equals("Multiple Choice"))
 		ismultiple = true;
+		System.out.println(ismultiple);
 		qtxt = scanner.nextLine();
 		ansno = Integer.parseInt(scanner.nextLine());
 		for(int i=0; i<ansno; i++){

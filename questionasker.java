@@ -6,6 +6,15 @@ import java.util.Random;
 import javax.swing.*;
 public class questionasker {
 	
+public static void calldialog(Boolean correct,int steps){
+	if (correct){
+		JOptionPane.showMessageDialog(null,"You are correct!Now take "+steps+" steps forward");
+	}
+	else{
+		JOptionPane.showMessageDialog(null,"You are wrong!You have to take "+steps+" steps backward");
+	}
+}
+	
 public static String anssingle5(String qtxt,String ans1,String ans2,String ans3,String ans4,String ans5){
 	ButtonGroup group = new ButtonGroup();
 	JRadioButton option1 = new JRadioButton(ans1);
@@ -19,6 +28,7 @@ public static String anssingle5(String qtxt,String ans1,String ans2,String ans3,
     group.add(option4);
     group.add(option5);
     JPanel panel = new JPanel(new GridLayout(0, 1));
+    panel.add(new JLabel("Single Choice Question"));
     panel.add(new JLabel(qtxt));
     panel.add(option1);
     panel.add(option2);
@@ -60,6 +70,7 @@ public static String anssingle4(String qtxt,String ans1,String ans2,String ans3,
     group.add(option3);
     group.add(option4);
     JPanel panel = new JPanel(new GridLayout(0, 1));
+    panel.add(new JLabel("Single Choice Question"));
     panel.add(new JLabel(qtxt));
     panel.add(option1);
     panel.add(option2);
@@ -94,6 +105,7 @@ public static String anssingle4(String qtxt,String ans1,String ans2,String ans3,
 		JCheckBox option4 = new JCheckBox(ans4);
 		JCheckBox option5 = new JCheckBox(ans5);
         JPanel panel = new JPanel(new GridLayout(0, 1));
+        panel.add(new JLabel("Multiple Choice Question"));
         panel.add(new JLabel(qtxt));
         panel.add(option1);
         panel.add(option2);
@@ -130,6 +142,7 @@ public static String anssingle4(String qtxt,String ans1,String ans2,String ans3,
 		JCheckBox option3 = new JCheckBox(ans3);
 		JCheckBox option4 = new JCheckBox(ans4);
         JPanel panel = new JPanel(new GridLayout(0, 1));
+        panel.add(new JLabel("Multiple Choice Question"));
         panel.add(new JLabel(qtxt));
         panel.add(option1);
         panel.add(option2);
@@ -163,21 +176,17 @@ public static String anssingle4(String qtxt,String ans1,String ans2,String ans3,
 		int index = randomGenerator.nextInt(questionlist.size());
 		Questions Q = questionlist.get(index);
 		if (Q.ismultiple && Q.ansno == 4){
-			System.out.println("multi4");
 			ans = ansmulti4(Q.qtxt,Q.ans[0],Q.ans[1],Q.ans[2],Q.ans[3]);
 		}
 		if (Q.ismultiple && Q.ansno == 5){
-			System.out.println("multi5");
 			ans = ansmulti5(Q.qtxt,Q.ans[0],Q.ans[1],Q.ans[2],Q.ans[3],Q.ans[4]);
 		}
 		if ((!(Q.ismultiple)) && (Q.ansno == 4)){
-			System.out.println("single4");
 			ans = anssingle4(Q.qtxt,Q.ans[0],Q.ans[1],Q.ans[2],Q.ans[3]);
 		}
 		if ((!(Q.ismultiple)) && (Q.ansno == 5)){
-			System.out.println("single5");
 			ans = anssingle5(Q.qtxt,Q.ans[0],Q.ans[1],Q.ans[2],Q.ans[3],Q.ans[4]);
 		}
-		if (ans.equals(Q.trueans)){System.out.println("correct");}
+		if (ans.equals(Q.trueans)){calldialog(true,Q.correctsteps);}
 	}
 }
